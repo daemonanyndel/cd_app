@@ -4,7 +4,7 @@
 # https://aka.ms/yaml
 
 trigger:
-- main
+- azure-test
 
 pool:
   vmImage: ubuntu-latest
