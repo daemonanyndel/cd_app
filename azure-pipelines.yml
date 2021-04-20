@@ -31,7 +31,7 @@ jobs:
     displayName: Get Cython
   - script: pip3 install --user buildozer
     displayName: Get Buildozer
-  # This part will build and recall the cache in order to save a good part of the previous stems in storage, so that in following runs we can avoid some of the steps.
+  # This part will build and recall the cache in order to save a good part of the next step in storage, so that in following runs we can avoid waiting a very long time on it
   # This will bring our build time from 12 minutes to about 2 minutes.
   - task: Cache@2
     inputs:
