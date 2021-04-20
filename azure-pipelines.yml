@@ -22,6 +22,7 @@ jobs:
   displayName: Building .apk
   dependsOn: test
   steps:
+  # This part will install all the necessary dependencies needed in order to build the application
   - script: sudo apt update
     displayName: Prepare install
   - script: sudo apt install -y git zip unzip openjdk-8-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
@@ -30,6 +31,8 @@ jobs:
     displayName: Get Cython
   - script: pip3 install --user buildozer
     displayName: Get Buildozer
+  # This part will build and recall the cache in order to save a good part of the previous stems in storage, so that in following runs we can avoid some of the steps.
+  # This will bring our build time from 12 minutes to about 2 minutes.
   - task: Cache@2
     inputs:
       key: 'buildozer_system | "$(Agent.OS)" | requirements.txt'
@@ -40,8 +43,11 @@ jobs:
       key: 'buildozer_project | "$(Agent.OS)" | requirements.txt'
       path: $(BUILDOZER_PROJECT_DIR)
     displayName: Cache buildozer (project)
+  # This part will convert our python code into the .apk file proper, making it ready to be run in android phones or emulators. 
   - script: buildozer android debug
     displayName: Build apk
+  # This part will copy the built .apk file and store it in Azure Pipelines storage ready to be used, and will be saved even after the pipeline is done running.
+  # This is necessary because otherwise all built files would be deleted as soon as the pipeline is finalized
   - task: CopyFiles@2
     displayName: Stage apk
     inputs:
