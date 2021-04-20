@@ -5,14 +5,51 @@
 
 trigger: none
 
+variables:
+  BUILDOZER_SYSTEM_DIR: /home/vsts/.buildozer
+  BUILDOZER_PROJECT_DIR: $(System.DefaultWorkingDirectory)/.buildozer
+  BIN_DIR: $(System.DefaultWorkingDirectory)/bin
+
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+jobs:
+- job: test
+  displayName: Running tests
+  steps:
+  - script: echo Tests are being run!
+- job: build
+  displayName: Building .apk
+  dependsOn: test
+  steps:
+  - script: sudo apt update
+    displayName: Prepare install
+  - script: sudo apt install -y git zip unzip openjdk-8-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
+    displayName: Install dependencies
+  - script: pip3 install --user --upgrade Cython==0.29.19 virtualenv
+    displayName: Get Cython
+  - script: pip3 install --user buildozer
+    displayName: Get Buildozer
+  - task: Cache@2
+    inputs:
+      key: 'buildozer_system | "$(Agent.OS)" | requirements.txt'
+      path: $(BUILDOZER_SYSTEM_DIR)
+    displayName: Cache buildozer (system)
+  - task: Cache@2
+    inputs:
+      key: 'buildozer_project | "$(Agent.OS)" | requirements.txt'
+      path: $(BUILDOZER_PROJECT_DIR)
+    displayName: Cache buildozer (project)
+  - script: buildozer android debug
+    displayName: Build apk
+  - task: CopyFiles@2
+    displayName: Stage apk
+    inputs:
+      contents: '$(BIN_DIR)/*.apk'
+      targetFolder: '$(build.artifactStagingDirectory)'
+  - task: PublishBuildArtifacts@1
+    displayName: Publish apk
+    inputs:
+      pathToPublish: '$(build.artifactStagingDirectory)'
+      artifactName: 'drop'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
