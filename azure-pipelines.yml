@@ -22,8 +22,7 @@ jobs:
   displayName: Building .apk
   dependsOn: test
   steps:
-   - name: Test with pytest
-        run: |
+   - script: |
          pip install pytest
          pip install pytest-cov
          pytest test.py 
