@@ -17,17 +17,17 @@ jobs:
 - job: test
   displayName: Running tests
   steps:
-  - script: echo Tests are being run!
+  - script: pip install pytest pytest-cov
+    displayName: Installing Pytest and Dependencies
+  - script: python -m pip install kivy[base] kivy_examples
+    displayName: Installing Kivy
+  - script: pytest test.py
+    displayName: Running Tests
 - job: build
   displayName: Building .apk
   dependsOn: test
   steps:
-  - script: pip install pytest
-    displayName: Installing Pytest
-  - script: pip install pytest-cov
-    displayName: Installing Pytest-Cov
-  - script: pytest test.py
-    displayName: Running Tests
+
   # This part will install all the necessary dependencies needed in order to build the application
   - script: sudo apt update
     displayName: Prepare install
