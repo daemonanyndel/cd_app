@@ -1,3 +1,4 @@
+print("in main!")
 __version__ = '0.1'
 
 # Program to create a calculator 
