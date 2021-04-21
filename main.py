@@ -39,9 +39,16 @@ class CalcGridLayout(GridLayout):
             try:
                 # Solve formula and display it in entry
                 # which is pointed at by display
-                self.display.text = str(eval(calculation))
+                self.display.text = calculate_execution(calculation)
+                print(self.display.text)
+                print(calculation)
             except Exception:
                 self.display.text = "Error"
+
+def calculate_execution(calculation):
+    result = str(eval(calculation))
+    return result
+    
    
  # Creating App class
 class CalculatorApp(App):
@@ -49,6 +56,9 @@ class CalculatorApp(App):
     def build(self):
         return CalcGridLayout()
    
-# creating object and running it 
-calcApp = CalculatorApp()
-calcApp.run()
+# creating object and running it
+if __name__ == "__main__":
+    calcApp = CalculatorApp()
+    calcApp.run()
+
+
