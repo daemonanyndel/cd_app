@@ -22,6 +22,11 @@ jobs:
   displayName: Building .apk
   dependsOn: test
   steps:
+   - name: Test with pytest
+        run: |
+         pip install pytest
+         pip install pytest-cov
+         pytest test.py 
   # This part will install all the necessary dependencies needed in order to build the application
   - script: sudo apt update
     displayName: Prepare install
