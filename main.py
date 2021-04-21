@@ -1,8 +1,7 @@
 __version__ = '0.1'
 
 # Program to create a calculator 
-    
-# Program to Show how to create a switch 
+
 # import kivy module    
 import kivy  
 
@@ -57,8 +56,6 @@ class CalculatorApp(App):
         return CalcGridLayout()
    
 # creating object and running it
-if __name__ == "__main__":
+if __name__ == '__main__':
     calcApp = CalculatorApp()
     calcApp.run()
-
-
