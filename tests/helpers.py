@@ -3,7 +3,7 @@ from kivy.lang.builder import Builder
 from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
 
-from main import CalcGridLayout
+from app.main import CalcGridLayout
 
 
 def find_widgets(root, _type):
@@ -31,7 +31,7 @@ def press_sequence(input_string):
 
 
 # create the root widget, and load the kv file to get buttons and stuff defined there
-Builder.load_file('calculator.kv')
+Builder.load_file('app/calculator.kv')
 root = CalcGridLayout()
 
 # collect references to buttons and textfield

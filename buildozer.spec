@@ -10,7 +10,7 @@ package.name = myapp
 package.domain = org.test
 
 # (str) Source code where the main.py live
-source.dir = .
+source.dir = app/
 
 # (list) Source files to include (let empty to include all the files)
 source.include_exts = py,png,jpg,kv,atlas
@@ -46,10 +46,10 @@ requirements = python3,kivy
 #garden_requirements =
 
 # (str) Presplash of the application
-presplash.filename = %(source.dir)s/data/presplash.png
+presplash.filename = data/presplash.png
 
 # (str) Icon of the application
-icon.filename = %(source.dir)s/data/icon.png
+icon.filename = data/icon.png
 
 # (str) Supported orientation (one of landscape, sensorLandscape, portrait or all)
 orientation = portrait

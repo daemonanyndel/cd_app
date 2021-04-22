@@ -1,5 +1,5 @@
-from helpers import press_sequence
-from main import calculate_execution
+from tests.helpers import press_sequence
+from app.main import calculate_execution
 
 list_addition = ["5+5", "10+5", "3+3", "-5+5"]
 list_addition_results =["10", "15", "6", "0"]
