@@ -1,9 +1,5 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
-trigger: none
+trigger:
+  - main
 
 variables:
   BUILDOZER_SYSTEM_DIR: /home/vsts/.buildozer
@@ -17,7 +13,14 @@ jobs:
 - job: test
   displayName: Running tests
   steps:
-  - script: echo Tests are being run!
+  - script: pip install pytest pytest-cov
+    displayName: Install pytest
+  - script: sudo apt-get install -y xvfb
+    displayName: Another install
+  - script: python -m pip install kivy[base] kivy_examples
+    displayName: Install Kivy
+  - script: xvfb-run pytest
+    displayName: Run tests
 - job: build
   displayName: Building .apk
   dependsOn: test
@@ -58,4 +61,3 @@ jobs:
     inputs:
       pathToPublish: '$(build.artifactStagingDirectory)'
       artifactName: 'drop'
-
