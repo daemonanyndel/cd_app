@@ -72,10 +72,10 @@
     BoxLayout:
         spacing: 10
         CustButton:
-            text: "AC"
-            on_press: entry.text = ""
-        CustButton:
             text: "0"
+            on_press: entry.text += self.text
+		CustButton:
+            text: "."
             on_press: entry.text += self.text
         CustButton:
             text: "="
@@ -83,3 +83,13 @@
         CustButton:
             text: "/"
             on_press: entry.text += self.text
+			
+	BoxLayout:
+        spacing: 10
+        CustButton:
+            text: "AC"
+            on_press: entry.text = ""
+			
+			
+			
+			
