@@ -1,6 +1,49 @@
 # Custom button
+
 <CustButton@Button>:
-    font_size: dp(32)
+    background_color: 0,0,0,0  # the last zero is the critical on, make invisible
+    canvas.before:
+        Color:
+            rgba: (.5,.5,.5,1) if self.state=='normal' else (0,0,0,1)  # visual feedback of press
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [25,]
+	font_size: dp(32)
+	
+<CustButtonRed@Button>:
+    background_color: 0,0,0,0  # the last zero is the critical on, make invisible
+    canvas.before:
+        Color:
+            rgba: (0.40,0,0,1) if self.state=='normal' else (0,0,0,1)  # visual feedback of press
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [25,]
+	font_size: dp(32)
+	
+<CustButtonBlack@Button>:
+    background_color: 0,0,0,0  # the last zero is the critical on, make invisible
+    canvas.before:
+        Color:
+            rgba: (0.3,0.3,0.3,1) if self.state=='normal' else (0.1,0.1,0.1,1)  # visual feedback of press
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [25,]
+	font_size: dp(32)
+	
+<CustButtonGreen@Button>:
+    background_color: 0,0,0,0  # the last zero is the critical on, make invisible
+    canvas.before:
+        Color:
+            rgba: (0.3,0.35,0.3,1) if self.state=='normal' else (0.1,0.1,0.1,1)  # visual feedback of press
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [25,]
+	font_size: dp(32)
+
    
 # Define id so I can refer to the CalcGridLayout
 # class functions
@@ -33,7 +76,7 @@
         CustButton:
             text: "9"
             on_press: entry.text += self.text
-        CustButton:
+        CustButtonBlack:
             text: "+"
             on_press: entry.text += self.text
    
@@ -48,7 +91,7 @@
         CustButton:
             text: "6"
             on_press: entry.text += self.text
-        CustButton:
+        CustButtonBlack:
             text: "-"
             on_press: entry.text += self.text
    
@@ -63,7 +106,7 @@
         CustButton:
             text: "3"
             on_press: entry.text += self.text
-        CustButton:
+        CustButtonBlack:
             text: "*"
             on_press: entry.text += self.text
    
@@ -77,19 +120,17 @@
 		CustButton:
             text: "."
             on_press: entry.text += self.text
-        CustButton:
+        CustButtonGreen:
             text: "="
             on_press: calculator.calculate(entry.text)
-        CustButton:
+        CustButtonBlack:
             text: "/"
             on_press: entry.text += self.text
 			
 	BoxLayout:
         spacing: 10
-        CustButton:
+        CustButtonRed:
             text: "AC"
             on_press: entry.text = ""
-			background_color: (1.0, 0.0, 0.0, 1.0)
-			
 			
 			
