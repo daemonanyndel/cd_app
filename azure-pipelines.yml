@@ -18,10 +18,10 @@ jobs:
   - script: pip install pytest pytest-cov
     displayName: Install pytest
   - script: sudo apt-get install -y xvfb
-    displayName: Another install
+    displayName: Install xvfb
   #This part will install Kivy, a Python Framework for developing mobile apps and other multitouch application software with interfaces
   #This is what allows our python code to run on the graphical interface we made
-  - script: python -m pip install kivy[base] kivy_examples
+  - script: python -m pip install kivy[base]
     displayName: Install Kivy
   #This part will run the tests proper, it is done with the xvfb-run command to run them within xvfb. 
   #We have also added the --log-cli-level=INFO argument in order to get more detailed information about the testing.

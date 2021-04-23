@@ -1,4 +1,3 @@
-print("in main!")
 __version__ = '0.2'
 
 # Program to create a calculator 
