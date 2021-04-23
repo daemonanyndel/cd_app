@@ -8,16 +8,16 @@ list_substraction = ["5-5", "200-15", "400-40", "500-200"]
 list_substraction_results =["0", "185", "360", "300"]
 
 list_division = ["10/5", "200/10", "30/5", "-10/2"]
-list_division_results =["2.0", "20.0", "6.0", "-5.0"]
+list_division_results =["2", "20", "6", "-5"]
 
 list_multiplication = ["5*5", "200*10", "2*5", "2*25"]
 list_multiplication_results =["25", "2000", "10", "50"]
 
 list_decimals = ["0.5*5", "2+0.10", "0.2-0.5", "2/0.25"]
-list_decimals_results =["2.5", "2.1", "-0.3", "8.0"]
+list_decimals_results =["2.5", "2.1", "-0.3", "8"]
 
 list_composite = ["2*3*3*2", "3+2+6-2", "2.5+2.5*3*4-2", "-2/-2+4+5"]
-list_composite_results =["36", "9", "30.5", "10.0"]
+list_composite_results =["36", "9", "30.5", "10"]
 
 
 #Testing Inputs 

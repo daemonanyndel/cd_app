@@ -4,7 +4,7 @@ __version__ = '0.2'
 # Program to create a calculator 
 
 # import kivy module    
-import kivy  
+import kivy
 
 # base Class of your App inherits from the App class.    
 # app:always refers to the instance of your application   
@@ -45,6 +45,11 @@ class CalcGridLayout(GridLayout):
 
 def calculate_execution(calculation):
     result = str(eval(calculation))
+    float_result = round(float(result), 6)
+    if float_result.is_integer():
+        result = str(int(float_result))
+    else:
+        result = str(float_result)
     return result
    
  # Creating App class
