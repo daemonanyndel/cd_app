@@ -19,7 +19,7 @@ jobs:
     displayName: Another install
   - script: python -m pip install kivy[base] kivy_examples
     displayName: Install Kivy
-  - script: xvfb-run pytest
+  - script: xvfb-run pytest --log-cli-level=INFO
     displayName: Run tests
 - job: build
   displayName: Building .apk
