@@ -25,9 +25,7 @@ from kivy.config import Config
 Config.set('graphics', 'resizable', 1)
 ## Config.set('graphics', 'width', '400')
 ## Config.set('graphics', 'height', '400')
-  
-def build(self):
-    self.icon = 'icon.png'
+
 	
 # Creating Layout class
 class CalcGridLayout(GridLayout):
@@ -55,6 +53,7 @@ def calculate_execution(calculation):
 class CalculatorApp(App):
    
     def build(self):
+        self.icon = 'data/icon.png'
         return CalcGridLayout()
    
 # creating object and running it
