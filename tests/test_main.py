@@ -36,6 +36,10 @@ def test_input_clear_screen():
 def test_input_decimals():
     assert press_sequence('0 . 2 * 0 . 5 =') == '0.1'
 
+def test_zero_division():
+    assert press_sequence('5 / 0 =') == 'Error'
+
+
 #Testing the str(eval) function to make sure its working well
 def test_addition():
     position = 0
