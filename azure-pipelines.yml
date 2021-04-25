@@ -1,5 +1,7 @@
-trigger:
-  - main
+# automatic trigger when a git branch on the repo updates. Set to None, because all code changes
+# go through Pull Requests, which also trigger a CI run. So having this track the main branch just gives
+# duplicate CI runs.
+trigger: none
 
 variables:
   BUILDOZER_SYSTEM_DIR: /home/vsts/.buildozer
