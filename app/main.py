@@ -1,46 +1,47 @@
+"""
+A calculator app written in Python using Kivy.
+
+Initial version found at https://www.geeksforgeeks.org/how-to-make-calculator-using-kivy-python/
+
+Tweaked here for extended functionality, improved design and a higher degree of testability.
+"""
+
 __version__ = '0.2'
 
-# Program to create a calculator 
-
-# import kivy module    
-import kivy
-
-# base Class of your App inherits from the App class.    
-# app:always refers to the instance of your application   
-from kivy.app import App 
-     
-# this restrict the kivy version i.e  
-# below this kivy version you cannot  
-# use the app or software  
-kivy.require('1.9.0') 
-  
-# for making multiple bttons to arranging
-# them we are using this
-from kivy.uix.gridlayout import GridLayout
-  
-# for the size of window
+# According to kivy docs, Config.set should be done before any other kivy modules are imported
+# Makes window resizable to fit different screen dimensions
 from kivy.config import Config
-  
-# Setting size to resizable
 Config.set('graphics', 'resizable', 1)
-## Config.set('graphics', 'width', '400')
-## Config.set('graphics', 'height', '400')
 
+# Basic imports: the App object and the GridLayout that will hold all parts together
+import kivy
+from kivy.app import App 
+from kivy.uix.gridlayout import GridLayout
+
+# Makes sure the installation running the app has a sufficient version of kivy, to prevent unexpected errors
+kivy.require('1.9.0')
 	
-# Creating Layout class
+
 class CalcGridLayout(GridLayout):
-   
-    # Function called when equals is pressed
+    """
+    The layout is a container for other widgets: the buttons and the display. Those "child widgets" are 
+    defined in the .kv file.
+    """
     def calculate(self, calculation):
+        """
+        The "bridge" between the math functionality and user inputs. Updates the display with a result.
+        """
         if calculation:
             try:
-                # Solve formula and display it in entry
-                # which is pointed at by display
                 self.display.text = calculate_execution(calculation)
             except Exception:
                 self.display.text = "Error"
 
+
 def calculate_execution(calculation):
+    """Evaluates the math expression. 
+    
+    This is separate from the App itself so that it can be tested separately."""
     result = str(eval(calculation))
     float_result = round(float(result), 6)
     if float_result.is_integer():
@@ -48,15 +49,19 @@ def calculate_execution(calculation):
     else:
         result = str(float_result)
     return result
-   
- # Creating App class
+
+
 class CalculatorApp(App):
-   
+    """
+    The App object is responsible for more "meta-level" functionality of the app, like how it behaves on startup, 
+    what icon to represent the app with, how to handle "pause" events etc.    
+    """
     def build(self):
+        """Called once on startup, returns the root widget of the app"""
         self.icon = 'data/icon.png'
         return CalcGridLayout()
-   
-# creating object and running it
+
+# Create app and run it
 if __name__ == '__main__':
     calcApp = CalculatorApp()
     calcApp.run()
